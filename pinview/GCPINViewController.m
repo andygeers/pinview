@@ -56,7 +56,7 @@
 #pragma mark -
 #pragma mark initialize
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		self.messageText = @"";
 		self.errorText = @"";
 		PINText = [@"" retain];
@@ -138,6 +138,13 @@
 	[super viewWillAppear:animated];
 	[self.navigationController setNavigationBarHidden:NO animated:animated];
 }
+
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	// Return YES for supported orientations.
+	return (interfaceOrientation == UIInterfaceOrientationPortrait) || (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
+}
+
 
 #pragma mark -
 #pragma mark show view controller

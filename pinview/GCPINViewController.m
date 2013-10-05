@@ -160,6 +160,11 @@
 	UITextField *field = [notif object];
 	if (field == inputField) {
 		NSString *newText = field.text;
+        
+        if (newText.length <= 4) {
+            [PINText release];
+            PINText = [newText copy];
+        }
 		
 		if ([newText length] == 4) {
 			NSString *toValidate = [field.text copy];
@@ -170,10 +175,6 @@
 				[self setErrorLabelHidden:NO animated:YES];
 				inputField.text = @"";
 			}
-		}
-		else {
-			[PINText release];
-			PINText = [newText copy];
 		}
 		
 		[self updatePINDisplay];
